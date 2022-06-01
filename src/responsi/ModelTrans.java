@@ -52,7 +52,7 @@ public class ModelTrans {
         }
     }
     
-    public void tambahTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, int diskon, double totalharga){        
+    public void tambahTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, double diskon, double totalharga){        
         try{
             String query = "INSERT INTO transactions VALUES('"+idtransaksi+"', '"+namabarang+"', '"+namakasir+"', '"+quantity+"', '"+hargasatuan+"', '"+diskon+"', '"+totalharga+"')";
             connector.statement = connector.koneksi.createStatement();
@@ -64,7 +64,7 @@ public class ModelTrans {
         }
     }
     
-    public void updateTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, int diskon, double totalharga, String ubah){
+    public void updateTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, double diskon, double totalharga, String ubah){
         try{
             String query = "UPDATE transactions set id_trans=?," + "nama_barang=?, nama_kasir=?, qty=?, price_per_qty=?, discount=?, price_total=? WHERE id_trans=?";
             PreparedStatement preparedStatement = connector.koneksi.prepareStatement(query);
@@ -73,7 +73,7 @@ public class ModelTrans {
             preparedStatement.setString(3, namakasir);
             preparedStatement.setInt(4, quantity);
             preparedStatement.setInt(5, hargasatuan);
-            preparedStatement.setInt(6, diskon);
+            preparedStatement.setDouble(6, diskon);
             preparedStatement.setDouble(7, totalharga);
             preparedStatement.setString(8, ubah);
             preparedStatement.execute();
@@ -85,12 +85,13 @@ public class ModelTrans {
             }     
         } catch(SQLException ex){
             System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     
     public void deleteTrans(String idtransaksi){
         try{
-            String query = "DELETE * FROM transactions WHERE id_trans = '"+idtransaksi+"'";
+            String query = "DELETE FROM transactions WHERE id_trans = '"+idtransaksi+"'";
             connector.statement = connector.koneksi.createStatement();
             connector.statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");

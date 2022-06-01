@@ -1,6 +1,5 @@
 package responsi;
 
-import responsi.Main.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
@@ -26,19 +25,19 @@ public class ControllerTrans {
             public void actionPerformed(ActionEvent e) {
                 String idtransaksi = viewTrans.getFidtransaksi().getText();
                 String namabarang = viewTrans.getFnamabarang().getText();
-                String namakasir = viewTrans.getFnamabarang().getText();
+                String namakasir = viewTrans.getFnamakasir().getText();
                 int quantity = Integer.parseInt(viewTrans.getFquantity().getText());
                 int hargasatuan = Integer.parseInt(viewTrans.getFhargasatuan().getText());
-                int diskon = Integer.parseInt(viewTrans.getFdiskon().getText());
+                double diskon = Integer.parseInt(viewTrans.getFdiskon().getText());
                 double totalharga = (quantity*hargasatuan)-(quantity*hargasatuan*(diskon*0.01));
                 
                 if(idtransaksi.equals("") || namabarang.equals("")||namakasir.equals("")|| quantity==0 || hargasatuan==0 || diskon==0){
                     JOptionPane.showMessageDialog(viewTrans, "Isi kolom yang kosong!");
                 } else{
-                    modelTrans.updateTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga, namakasir);
+                    modelTrans.tambahTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga);
                     viewTrans.dispose();
-                    mvc v = new mvc();
-                    v.mvc1();
+                    Main v = new Main();
+                    v.mvc();
                 }
             }
         });
@@ -48,20 +47,19 @@ public class ControllerTrans {
             public void actionPerformed(ActionEvent e) {
                 String idtransaksi = viewTrans.getFidtransaksi().getText();
                 String namabarang = viewTrans.getFnamabarang().getText();
-                String namakasir = viewTrans.getFnamabarang().getText();
+                String namakasir = viewTrans.getFnamakasir().getText();
                 int quantity = Integer.parseInt(viewTrans.getFquantity().getText());
                 int hargasatuan = Integer.parseInt(viewTrans.getFhargasatuan().getText());
-                int diskon = Integer.parseInt(viewTrans.getFdiskon().getText());
+                double diskon = Integer.parseInt(viewTrans.getFdiskon().getText());
                 double totalharga = (quantity*hargasatuan)-(quantity*hargasatuan*(diskon*0.01));
                 String ubah = viewTrans.ubah;
-                
                 if(idtransaksi.equals("") || namabarang.equals("")||namakasir.equals("")|| quantity==0 || hargasatuan==0 || diskon==0){
                     JOptionPane.showMessageDialog(viewTrans, "Isi kolom yang kosong!");
                 } else{
-                    modelTrans.updateTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga, namakasir);
+                    modelTrans.updateTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga, ubah);
                     viewTrans.dispose();
-                    mvc v = new mvc();
-                    v.mvc1();
+                    Main v = new Main();
+                    v.mvc();
                 }
             }
         });
@@ -74,11 +72,10 @@ public class ControllerTrans {
                 if(idtransaksi.equals("")){
                    JOptionPane.showConfirmDialog(null, "Hapus data transaksi?", "Pilih Opsi", JOptionPane.YES_NO_OPTION);
                 } else{
-                    JOptionPane.showMessageDialog(null, "Data batal dihapus");
                     modelTrans.deleteTrans(idtransaksi);
                     viewTrans.dispose();
-                    mvc v = new mvc();
-                    v.mvc1();
+                    Main v = new Main();
+                    v.mvc();
                 }
             }
         });
