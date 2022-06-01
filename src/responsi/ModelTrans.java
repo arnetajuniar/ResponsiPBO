@@ -12,7 +12,7 @@ public class ModelTrans {
     public int getBanyakData(){
         int jmlData=0;
         try{
-            String query = "SELECT * FROM transaction";
+            String query = "SELECT * FROM transactions";
             connector.statement = connector.koneksi.createStatement();
             ResultSet resultSet = connector.statement.executeQuery(query);
             while(resultSet.next()){
@@ -31,7 +31,7 @@ public class ModelTrans {
             int jmlData=0;
             String data[][] = new String[getBanyakData()][7];
             
-            String query = "SELECT * FROM transaction";
+            String query = "SELECT * FROM transactions";
             connector.statement = connector.koneksi.createStatement();
             ResultSet resultSet = connector.statement.executeQuery(query);
             while(resultSet.next()){
@@ -54,10 +54,10 @@ public class ModelTrans {
     
     public void tambahTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, int diskon, double totalharga){        
         try{
-            String query = "INSERT INTO transaction VALUES('"+idtransaksi+"', '"+namabarang+"', '"+namakasir+"', '"+quantity+"', '"+hargasatuan+"', '"+diskon+"', '"+totalharga+"')";
+            String query = "INSERT INTO transactions VALUES('"+idtransaksi+"', '"+namabarang+"', '"+namakasir+"', '"+quantity+"', '"+hargasatuan+"', '"+diskon+"', '"+totalharga+"')";
             connector.statement = connector.koneksi.createStatement();
             connector.statement.executeUpdate(query);
-            JOptionPane.showMessageDialog(null, "Data berhasil ditambah");
+            JOptionPane.showMessageDialog(null, "Data berhasil ditambah.");
         } catch(SQLException ex){
             System.err.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, "ID transaksi sudah ada!");
@@ -66,7 +66,7 @@ public class ModelTrans {
     
     public void updateTrans(String idtransaksi, String namabarang, String namakasir, int quantity, int hargasatuan, int diskon, double totalharga, String ubah){
         try{
-            String query = "UPDATE transaction set id_trans=?," + "nama_barang=?, nama_kasir=?, qty=?, price_per_qty=?, price_total=? WHERE id_trans=?";
+            String query = "UPDATE transactions set id_trans=?," + "nama_barang=?, nama_kasir=?, qty=?, price_per_qty=?, discount=?, price_total=? WHERE id_trans=?";
             PreparedStatement preparedStatement = connector.koneksi.prepareStatement(query);
             preparedStatement.setString(1, idtransaksi);
             preparedStatement.setString(2, namabarang);
@@ -85,13 +85,12 @@ public class ModelTrans {
             }     
         } catch(SQLException ex){
             System.err.println(ex.getMessage());
-            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
     
     public void deleteTrans(String idtransaksi){
         try{
-            String query = "DELETE * FROM transaction WHERE id_trans = '"+idtransaksi+"'";
+            String query = "DELETE * FROM transactions WHERE id_trans = '"+idtransaksi+"'";
             connector.statement = connector.koneksi.createStatement();
             connector.statement.executeUpdate(query);
             JOptionPane.showMessageDialog(null, "Data berhasil dihapus.");

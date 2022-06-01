@@ -18,7 +18,7 @@ public class ControllerTrans {
             String dataTrans[][] = modelTrans.DataTransaksi();
             viewTrans.tabel.setModel((new JTable(dataTrans, viewTrans.namaKolom)).getModel());
         } else{
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan.");
+            JOptionPane.showMessageDialog(null, "Data transaksi kosong.");
         }
 
         viewTrans.btnTambah.addActionListener(new ActionListener(){
@@ -37,8 +37,8 @@ public class ControllerTrans {
                 } else{
                     modelTrans.updateTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga, namakasir);
                     viewTrans.dispose();
-                    Main main = new Main();
-                    main.main();
+                    mvc v = new mvc();
+                    v.mvc1();
                 }
             }
         });
@@ -60,8 +60,8 @@ public class ControllerTrans {
                 } else{
                     modelTrans.updateTrans(idtransaksi, namabarang, namakasir, quantity, hargasatuan, diskon, totalharga, namakasir);
                     viewTrans.dispose();
-                    Main main = new Main();
-                    main.main();
+                    mvc v = new mvc();
+                    v.mvc1();
                 }
             }
         });
@@ -77,8 +77,8 @@ public class ControllerTrans {
                     JOptionPane.showMessageDialog(null, "Data batal dihapus");
                     modelTrans.deleteTrans(idtransaksi);
                     viewTrans.dispose();
-                    Main main = new Main();
-                    main.main();
+                    mvc v = new mvc();
+                    v.mvc1();
                 }
             }
         });

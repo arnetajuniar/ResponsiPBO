@@ -23,8 +23,8 @@ public class ViewTrans extends JFrame{
     JLabel lnamabarang = new JLabel ("Nama Barang");
     JLabel lnamakasir = new JLabel("Nama Kasir");
     JLabel lquantity = new JLabel("Quantity");
-    JLabel lhargasatuan = new JLabel("Harga");
-    JLabel ldiskon = new JLabel("Diskon");
+    JLabel lhargasatuan = new JLabel("Harga Satuan");
+    JLabel ldiskon = new JLabel("Diskon (%)");
     //total harga gak usah, ditaruh tabel aja
     
     JButton btnTambah = new JButton("Tambah");
@@ -35,7 +35,7 @@ public class ViewTrans extends JFrame{
     public JTable tabel;
     DefaultTableModel dtm;
     JScrollPane scrollPane;
-    public Object namaKolom[]={"ID Transaksi", "Nama Barang", "Nama Kasir", "Quantity", "Harga Satuan", "Diskon"};
+    Object namaKolom[]={"ID Transaksi", "Nama Barang", "Nama Kasir", "Quantity", "Harga Satuan", "Diskon", "Total Harga"};
     String ubah;
     
     public ViewTrans(){
@@ -45,7 +45,7 @@ public class ViewTrans extends JFrame{
         
         setTitle("DATA TRANSAKSI");
         setDefaultCloseOperation(3);
-        setSize(680, 440);
+        setSize(780, 440);
         setLayout(null);
         setResizable(false);
         
@@ -53,48 +53,52 @@ public class ViewTrans extends JFrame{
         scrollPane.setBounds(20, 20, 480, 300);
         
         add(lidtransaksi);
-        lidtransaksi.setBounds(510, 20, 90, 20);
+        lidtransaksi.setBounds(600, 20, 90, 20);
         add(fidtransaksi);
-        fidtransaksi.setBounds(510, 40, 130, 20);
+        fidtransaksi.setBounds(600, 40, 130, 20);
         
         add(lnamabarang);
-        lnamabarang.setBounds(510, 60, 90, 20);
+        lnamabarang.setBounds(600, 60, 90, 20);
         add(fnamabarang);
-        fnamabarang.setBounds(510, 80, 130, 20);
+        fnamabarang.setBounds(600, 80, 130, 20);
         
         add(lnamakasir);
-        lnamakasir.setBounds(510, 100, 90, 20);
+        lnamakasir.setBounds(600, 100, 90, 20);
         add(fnamakasir);
-        fnamakasir.setBounds(510, 120, 130, 20);
+        fnamakasir.setBounds(600, 120, 130, 20);
         
         add(lquantity);
-        lquantity.setBounds(510, 140, 90, 20);
+        lquantity.setBounds(600, 140, 90, 20);
         add(fquantity);
-        fquantity.setBounds(510, 160, 130, 20);
+        fquantity.setBounds(600, 160, 130, 20);
         
         add(lhargasatuan);
-        lhargasatuan.setBounds(510, 180, 90, 20);
+        lhargasatuan.setBounds(600, 180, 90, 20);
         add(fhargasatuan);
-        fhargasatuan.setBounds(510, 200, 130, 20);
+        fhargasatuan.setBounds(600, 200, 130, 20);
         
         add(ldiskon);
-        ldiskon.setBounds(510, 220, 90, 20);
+        ldiskon.setBounds(600, 220, 90, 20);
         add(fdiskon);
-        fdiskon.setBounds(510, 240, 130, 20);
+        fdiskon.setBounds(600, 240, 130, 20);
         
         add(btnTambah);
-        btnTambah.setBounds(510, 270, 90, 20);
+        btnTambah.setBounds(600, 270, 90, 20);
         
         add(btnUpdate);
-        btnUpdate.setBounds(510, 300, 90, 20);
+        btnUpdate.setBounds(600, 300, 90, 20);
         
         add(btnDelete);
-        btnDelete.setBounds(510, 330, 90, 20);
+        btnDelete.setBounds(600, 330, 90, 20);
         
         add(btnReset);
-        btnReset.setBounds(510, 360, 90, 20);
+        btnReset.setBounds(600, 360, 90, 20);
        
+        scrollPane.setBounds(20, 35, 570, 345);
+        
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         
         tabel.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent m){
@@ -135,8 +139,8 @@ public class ViewTrans extends JFrame{
         return fdiskon;
     }
     
-    public static void main(String[] args){
-        new ViewTrans();
-    }
+//    public static void main(String[] args){
+//        new ViewTrans();
+//    }
    
 }
